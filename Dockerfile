@@ -17,6 +17,6 @@ RUN mkdir -p ${LOG_DIR} \
   && chown -R squid ${CACHE_DIR} \
   && chown -R squid /etc/squid
 
-USER squid
-EXPOSE 8080/tcp
+#USER squid
+EXPOSE 80/tcp
 ENTRYPOINT ["/home/squid/reverseproxy.sh"]

@@ -9,8 +9,8 @@ fi
 
 echo "Amending configuration for ${HOSTNAME}..."
 
-echo "http_port 8080 accel defaultsite=${HOSTNAME} no-vhost" >> /etc/squid/squid.conf \
- && echo "cache_peer ${DESTINATION} parent 8080 0 no-query originserver name=myAccel" >> /etc/squid/squid.conf \
+echo "http_port 80 accel defaultsite=${HOSTNAME} no-vhost" >> /etc/squid/squid.conf \
+ && echo "cache_peer ${DESTINATION} parent 80 0 no-query originserver name=myAccel" >> /etc/squid/squid.conf \
  && echo "acl our_sites dstdomain ${HOSTNAME}" >> /etc/squid/squid.conf \
  && echo "http_access allow our_sites" >> /etc/squid/squid.conf \
  && echo "cache_peer_access myAccel allow our_sites" >> /etc/squid/squid.conf \
