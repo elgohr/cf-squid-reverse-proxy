@@ -5,8 +5,7 @@ ENV CACHE_DIR=/var/spool/squid \
     LOG_DIR=/var/log/squid \
     DESTINATION=google.de
 
-RUN apk add --no-cache squid \
-  jq
+RUN apk add --no-cache squid jq
 
 COPY reverseproxy.sh /home/squid/reverseproxy.sh
 
@@ -18,6 +17,6 @@ RUN mkdir -p ${LOG_DIR} \
   && chown -R squid ${CACHE_DIR} \
   && chown -R squid /etc/squid
 
-#USER squid
-EXPOSE 80/tcp
+USER squid
+EXPOSE 8080/tcp
 ENTRYPOINT ["/home/squid/reverseproxy.sh"]
