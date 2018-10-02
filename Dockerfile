@@ -15,8 +15,9 @@ RUN mkdir -p ${LOG_DIR} \
   && mkdir -p ${CACHE_DIR} \
   && chmod -R 755 ${CACHE_DIR} \
   && chown -R squid ${CACHE_DIR} \
-  && chown -R squid /etc/squid
+  && chown -R squid /etc/squid \
+  && setcap CAP_NET_BIND_SERVICE=+eip /usr/sbin/squid
 
-#USER squid
+USER squid
 EXPOSE 80/tcp
 ENTRYPOINT ["/home/squid/reverseproxy.sh"]
