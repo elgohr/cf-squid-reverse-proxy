@@ -14,9 +14,8 @@ echo "http_port 80 accel defaultsite=${HOSTNAME} no-vhost" >> /etc/squid/squid.c
  && echo "acl our_sites dstdomain ${HOSTNAME}" >> /etc/squid/squid.conf \
  && echo "http_access allow our_sites" >> /etc/squid/squid.conf \
  && echo "cache_peer_access myAccel allow our_sites" >> /etc/squid/squid.conf \
- && echo "cache_peer_access myAccel deny all" >> /etc/squid/squid.conf \
- && echo "pid_filename /var/run/squid/squid.pid" >> /etc/squid/squid.conf
-
+ && echo "cache_peer_access myAccel deny all" >> /etc/squid/squid.conf
+ 
 echo "Initializing cache..."
 $(which squid) -N -f /etc/squid/squid.conf -z
 

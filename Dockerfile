@@ -8,6 +8,7 @@ ENV CACHE_DIR=/var/spool/squid \
 RUN apk add --no-cache squid jq
 
 COPY reverseproxy.sh /home/squid/reverseproxy.sh
+COPY squid.conf /etc/squid/squid.conf
 
 RUN mkdir -p ${LOG_DIR} \
   && chmod -R 755 ${LOG_DIR} \
