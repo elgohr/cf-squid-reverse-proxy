@@ -1,0 +1,20 @@
+name: Publish Master
+on: 
+  push:
+    branches:
+    - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build the Docker image
+      run: docker build . -t lgohr/cf-squid-reverse-proxy:${{ github.sha }} -t lgohr/cf-squid-reverse-proxy:latest
+    - name: Login to Registry
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Push to Registry
+      run: |
+        docker push lgohr/cf-squid-reverse-proxy:${{ github.sha }}
+        docker push lgohr/cf-squid-reverse-proxy:latest
+    - name: Logout
+      run: docker logout
