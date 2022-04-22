@@ -1,13 +1,13 @@
-name: Publish Master
+name: Publish
 on: 
   push:
     branches:
-    - master
+    - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . -t lgohr/cf-squid-reverse-proxy:${{ github.sha }} -t lgohr/cf-squid-reverse-proxy:latest
     - name: Login to Registry
